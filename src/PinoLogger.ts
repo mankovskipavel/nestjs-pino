@@ -1,6 +1,6 @@
 import { Injectable, Inject, Scope } from "@nestjs/common";
-import * as pino from "pino";
-import { getValue } from "express-ctx";
+import * as pino from 'pino';
+import { getValue } from 'express-ctx';
 import { PARAMS_PROVIDER_TOKEN, LOGGER_KEY } from "./constants";
 import { Params, isPassedLogger } from "./params";
 
@@ -106,7 +106,10 @@ export class PinoLogger implements PinoMethods {
 
     (this.logger[method] as any)(...args);
   }
-
+  public get mainLogger(){
+    return outOfContext || getValue<pino.Logger>(LOGGER_KEY);
+  }
+  
   public get logger() {
     return getValue<pino.Logger>(LOGGER_KEY) || outOfContext;
   }
