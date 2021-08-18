@@ -91,23 +91,23 @@ export class PinoLogger implements PinoMethods {
         if (firstArg instanceof Error) {
           args = [
             Object.assign({ [this.contextName]: context }, { err: firstArg }),
-            ...args.slice(1)
+            ...args.slice(1),
           ];
         } else {
           args = [
             Object.assign({ [this.contextName]: context }, firstArg),
-            ...args.slice(1)
+            ...args.slice(1),
           ];
         }
       } else {
         args = [{ [this.contextName]: context }, ...args];
       }
     }
-
+    (this.mainLogger[method] as any)(...args);
     (this.logger[method] as any)(...args);
   }
-  
-  public get mainLogger(){
+
+  public get mainLogger() {
     return outOfContext || getValue<pino.Logger>(LOGGER_KEY);
   }
   public get logger() {
