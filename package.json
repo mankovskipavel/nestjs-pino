@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-pino",
+  "name": "nestjs-pino-modified",
   "version": "1.4.0",
   "description": "Pino logger for NestJS",
   "main": "dist/index.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iamolegga/nestjs-pino.git"
+    "url": "git+https://github.com/mankovskipavel/nestjs-pino-modified.git"
   },
   "keywords": [
     "pino",
