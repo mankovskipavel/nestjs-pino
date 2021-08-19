@@ -103,14 +103,12 @@ export class PinoLogger implements PinoMethods {
         args = [{ [this.contextName]: context }, ...args];
       }
     }
-    (this.mainLogger[method] as any)(...args);
+
     (this.logger[method] as any)(...args);
   }
-
-  public get mainLogger() {
-    return outOfContext || getValue<pino.Logger>(LOGGER_KEY);
-  }
-  public get logger() {
-    return getValue<pino.Logger>(LOGGER_KEY) || outOfContext;
+  get logger() {
+    const log = getValue<pino.Logger>(LOGGER_KEY) || outOfContext;
+    log.level = process.env.ABC || log.levelVal.toString();
+    return log;
   }
 }
